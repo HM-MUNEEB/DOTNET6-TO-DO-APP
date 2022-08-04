@@ -1,4 +1,9 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using To_do_app_donet.Data;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<To_do_app_donetContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("To_do_app_donetContext") ?? throw new InvalidOperationException("Connection string 'To_do_app_donetContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
